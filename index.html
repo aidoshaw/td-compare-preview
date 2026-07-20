@@ -111,6 +111,39 @@
   .rl{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:block;color:var(--ink);font-weight:600;font-size:14.5px}
   .rl:hover{border-color:var(--blue);background:var(--soft2)}
   .rl small{display:block;color:var(--muted);font-weight:500;font-size:12.5px;margin-top:2px}
+  /* pricing calculator */
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  @media(max-width:760px){.calc{grid-template-columns:1fr}}
+  .calcbox{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff}
+  .calcbox label{display:block;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:10px}
+  .calcbox input[type=range]{width:100%;accent-color:var(--blue)}
+  .volval{font-size:15px;color:var(--muted);margin:10px 0 14px}
+  .volval span{color:var(--blue);font-weight:800;font-size:22px}
+  .chk{font-weight:500 !important;color:var(--ink) !important;display:flex;align-items:center;gap:8px;margin:6px 0 16px;cursor:pointer}
+  .breakdown .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--muted)}
+  .breakdown .row b{color:var(--ink)}
+  .calcresult{display:flex;flex-direction:column;gap:14px}
+  .rescard{border-radius:12px;padding:22px;text-align:center}
+  .rescard.twilio{background:var(--soft2);border:1px solid #f6d2c5}
+  .rescard.td{background:var(--navy);color:#fff}
+  .reslabel{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .rescard.td .reslabel{color:#c9a99c}
+  .resnum{font-size:36px;font-weight:800;color:var(--blue);margin:4px 0;line-height:1.1}
+  .rescard.td .resnum{color:#fff;font-size:26px}
+  .ressub{font-size:13px;color:var(--muted)}.rescard.td .ressub{color:#c9c4bd}
+  .disclaim{font-size:12px;color:var(--muted);margin-top:14px;font-style:italic}
+  .chartwrap{border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:18px;background:#fff}
+  /* verdict */
+  .verdict{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.verdict{grid-template-columns:1fr}}
+  .vcard{border:1px solid var(--line);border-radius:12px;padding:22px}
+  .vcard.win{border:2px solid var(--blue);background:var(--soft2)}
+  .vcard h3{font-size:18px;color:var(--navy);margin-bottom:10px}
+  .vcard ul{list-style:none}
+  .vcard li{font-size:14.5px;color:var(--ink);margin:7px 0;padding-left:22px;position:relative}
+  .vcard li::before{content:"\2192";position:absolute;left:0;color:var(--blue);font-weight:800}
+  .awards{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
+  .awards b{color:var(--navy)}
   /* cta */
   .ctaBand{background:linear-gradient(120deg,var(--blue),var(--blue-d));border-radius:16px;padding:40px;text-align:center;color:#fff}
   .ctaBand h2{font-size:28px;margin-bottom:8px}
@@ -186,6 +219,53 @@
   </div>
 </div></section>
 
+<section id="pricing"><div class="wrap">
+  <div class="eyebrow">The #1 reason teams switch</div>
+  <h2 class="sec">What Twilio actually costs at scale</h2>
+  <p class="lead">Twilio's headline rate looks low, but you pay per message segment, plus passthrough carrier fees, number rental, and a support plan for live help. Move the slider to see how it adds up. TrueDialog replaces all of it with one flat, predictable plan.</p>
+  <div class="calc">
+    <div class="calcbox">
+      <label for="vol">Messages per month</label>
+      <input id="vol" type="range" min="5000" max="500000" step="5000" value="50000">
+      <div class="volval"><span id="volnum">50,000</span> messages / month</div>
+      <label class="chk"><input type="checkbox" id="sup" checked> Include Twilio live support plan</label>
+      <div class="breakdown" id="bd"></div>
+    </div>
+    <div class="calcresult">
+      <div class="rescard twilio">
+        <div class="reslabel">Estimated Twilio cost</div>
+        <div class="resnum" id="twcost">$0</div>
+        <div class="ressub">per month, and it climbs with every message</div>
+      </div>
+      <div class="rescard td">
+        <div class="reslabel">TrueDialog</div>
+        <div class="resnum">One flat plan</div>
+        <div class="ressub">Unlimited users. No per-message markup. No carrier-fee markup.</div>
+        <a class="btn" href="#demo" style="margin-top:12px;background:#fff;color:var(--blue-d)">Get your flat quote</a>
+      </div>
+    </div>
+  </div>
+  <div class="chartwrap">
+    <div class="logocap" style="text-align:left;margin-bottom:10px">Estimated monthly cost as volume grows</div>
+    <svg viewBox="0 0 520 250" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Arial">
+      <line x1="46" y1="20" x2="46" y2="212" stroke="#ECE8E1" stroke-width="1.5"/>
+      <line x1="46" y1="212" x2="506" y2="212" stroke="#ECE8E1" stroke-width="1.5"/>
+      <line x1="46" y1="70" x2="506" y2="70" stroke="#F4F1EB" stroke-width="1"/>
+      <line x1="46" y1="141" x2="506" y2="141" stroke="#F4F1EB" stroke-width="1"/>
+      <polyline points="46,204 161,161 276,118 391,74 506,31" fill="none" stroke="#FE4F27" stroke-width="3"/>
+      <line x1="46" y1="189" x2="506" y2="189" stroke="#12A07E" stroke-width="3" stroke-dasharray="7 5"/>
+      <circle cx="506" cy="31" r="4" fill="#FE4F27"/>
+      <text x="500" y="24" text-anchor="end" font-size="12" font-weight="bold" fill="#D63E1C">Twilio climbs</text>
+      <text x="52" y="185" font-size="12" font-weight="bold" fill="#0E7d70">TrueDialog: flat plan</text>
+      <text x="46" y="230" font-size="11" fill="#6b7078">0</text>
+      <text x="276" y="230" text-anchor="middle" font-size="11" fill="#6b7078">250K messages / mo</text>
+      <text x="506" y="230" text-anchor="end" font-size="11" fill="#6b7078">500K</text>
+      <text x="10" y="120" font-size="11" fill="#6b7078" transform="rotate(-90 10 120)">Est. monthly cost</text>
+    </svg>
+  </div>
+  <p class="disclaim">Illustrative estimate based on Twilio's published usage-based model: per-segment messaging (about $0.0079), passthrough carrier fees (about $0.003 per message), number rental, and an optional live-support plan. Actual costs vary by route, volume and message length, and are shown here for comparison only.</p>
+</div></section>
+
 <section><div class="wrap">
   <div class="eyebrow">Why TrueDialog</div>
   <h2 class="sec">Built for enterprise messaging that has to land</h2>
@@ -251,6 +331,28 @@
     <div class="t">Since 2008<small>Enterprise-proven</small></div>
     <div class="t">Direct carrier<small>Connections</small></div>
   </div>
+  <p class="awards"><b>Recognized by</b> G2 (High Performer &amp; Momentum Leader), Inc. 5000, and MarTech Breakthrough.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">The honest verdict</div>
+  <h2 class="sec">Which one is right for you</h2>
+  <p class="lead">Twilio is a genuinely strong platform. The right choice comes down to how your team works, not marketing spin.</p>
+  <div class="verdict">
+    <div class="vcard"><h3>Choose Twilio if</h3>
+      <ul>
+        <li>You have developers who want raw APIs to build a custom product</li>
+        <li>Messaging is embedded deep inside your own application</li>
+        <li>You are happy to assemble and maintain the stack yourself</li>
+      </ul></div>
+    <div class="vcard win"><h3>Choose TrueDialog if</h3>
+      <ul>
+        <li>You want a full texting platform, not a coding project</li>
+        <li>You need native Salesforce, HubSpot or Dynamics texting</li>
+        <li>Predictable flat pricing and real U.S.-based support matter</li>
+        <li>You send high volume and deliverability is business-critical</li>
+      </ul></div>
+  </div>
 </div></section>
 
 <section><div class="wrap">
@@ -307,6 +409,24 @@
       if(!open){qa.classList.add('open');qa.querySelector('.ic').textContent='−';}
     });
   });
+  (function(){
+    var RATE=0.0079, CARRIER=0.003, NUMBER=1.15, SUPPORT=250;
+    var vol=document.getElementById('vol'), sup=document.getElementById('sup'),
+        volnum=document.getElementById('volnum'), twcost=document.getElementById('twcost'), bd=document.getElementById('bd');
+    if(!vol) return;
+    function money(n){return '$'+Math.round(n).toLocaleString();}
+    function calc(){
+      var v=+vol.value; volnum.textContent=v.toLocaleString();
+      var msg=v*RATE, carr=v*CARRIER, num=NUMBER, s=sup.checked?SUPPORT:0, total=msg+carr+num+s;
+      twcost.textContent=money(total);
+      var rows='<div class="row"><span>Message segments ('+v.toLocaleString()+' &times; $0.0079)</span><b>'+money(msg)+'</b></div>'+
+        '<div class="row"><span>Passthrough carrier fees (&times; $0.003)</span><b>'+money(carr)+'</b></div>'+
+        '<div class="row"><span>Phone number rental</span><b>'+money(num)+'</b></div>';
+      if(s) rows+='<div class="row"><span>Live support plan</span><b>'+money(s)+'</b></div>';
+      bd.innerHTML=rows;
+    }
+    vol.addEventListener('input',calc); sup.addEventListener('change',calc); calc();
+  })();
 </script>
 </body>
 </html>
